@@ -21,10 +21,22 @@ def clean_ssid_list(ssid_list):
     results.pop() # remove the last element since its useless
 
     # add other ssids that don't need to be queried
-    known_ssids = ["xfinitywifi", "This LAN is our LAN", "thepandashack", "XFINITY", "ZOOM", "OTA", "MyHouse", "AHMOTA", "RICS", "Music Garden", "finn"]
+    known_ssids = ["xfinitywifi", 
+                   "This LAN is our LAN", 
+                   "thepandashack", 
+                   "XFINITY", 
+                   "ZOOM", 
+                   "OTA", 
+                   "MyHouse", 
+                   "AHMOTA", 
+                   "RICS", 
+                   "Music Garden", 
+                   "finn"]
 
     for i in known_ssids:
-        results.remove(i)
+        for j in results:
+            if i == j:
+                results.remove(i)
 
     return results
 
@@ -111,7 +123,7 @@ elif action_type == 2:
     ap_pool = {"module":"PineAP","action":"getPool", "apiToken": API_TOKEN}
     resp = requests.post("http://172.16.42.1:1471/api/", data=json.dumps(ap_pool))
     results = json.loads(resp.text[6:])
-    
+
     results = clean_ssid_list(results)
 
     auth = HTTPBasicAuth(wigle_username, wigle_password)
