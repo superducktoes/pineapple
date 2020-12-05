@@ -8,6 +8,12 @@ API_TOKEN = config.API_TOKEN
 wigle_username = config.wigle_username
 wigle_password = config.wigle_password
 
+# this outputs one of four files
+# 1. {}_{}_unassociated_scan_results.json - list of all the clients not on an ap. includes mac vendor info
+# 2. {}_{}_out_of_range_scan_results.json - same as the above except for clients that aren't seen anymore
+# 3. {}_{}_ap_list_scan_results.json - scan results. takes an id of the scan. also has mac vendor info
+# 4. ssid_results_{}.json - all ap probes. includes wigle data
+
 def clean_ssid_list(ssid_list):
 
     results = json.dumps(ssid_list["ssidPool"]).split("\\n")

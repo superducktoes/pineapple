@@ -89,7 +89,7 @@
       <title>SSID's by Street - Boston</title>
       <table>
         <search>
-          <query>index=pineapple source="ssid_results*.json" | fields results{}.city, results{}.ssid, results{}.road, results{}.housenumber | mvexpand results{}.city | mvexpand results{}.ssid | mvexpand results{}.road  | search results{}.city=Boston AND results{}.ssid!=*oom | stats count by results{}.road, results{}.ssid</query>
+          <query>index=pineapple source=ssid_results_* | mvexpand results{}.city | mvexpand results{}.ssid | mvexpand results{}.road | rename results{}.city as city, results{}.ssid as ssid, results{}.road as road | search city=Boston | table ssid, road | dedup road</query>
           <earliest>0</earliest>
           <latest></latest>
           <sampleRatio>1</sampleRatio>
