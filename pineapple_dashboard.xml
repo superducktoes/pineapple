@@ -140,7 +140,7 @@
       <title>SSID's by Street - Boston</title>
       <table>
         <search>
-          <query>index=pineapple source=ssid_results_* | search city=Boston | table ssid, housenumber, road | dedup ssid, housenumber, road</query>
+          <query>index=pineapple source=ssid_results_* | search city=Boston | table ssid, housenumber, road | dedup ssid, housenumber, road | sort - housenumber</query>
           <earliest>0</earliest>
           <latest></latest>
           <sampleRatio>1</sampleRatio>
@@ -159,7 +159,7 @@
       <title>SSID's by Street - Mass</title>
       <table>
         <search>
-          <query>index=pineapple source=ssid_results_* | search region=MA | table ssid, housenumber, road, city | dedup ssid, road, city, housenumber</query>
+          <query>index=pineapple source=ssid_results_* | search region=MA | table ssid, housenumber, road, city | dedup ssid, road, city, housenumber | sort - housenumber</query>
           <earliest>0</earliest>
           <latest></latest>
           <sampleRatio>1</sampleRatio>
@@ -217,7 +217,7 @@
         <option name="charting.chart.bubbleSizeBy">area</option>
         <option name="charting.chart.nullValueMode">gaps</option>
         <option name="charting.chart.showDataLabels">none</option>
-        <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+        <option name="charting.chart.sliceCollapsingThreshold">0.02</option>
         <option name="charting.chart.stackMode">default</option>
         <option name="charting.chart.style">shiny</option>
         <option name="charting.drilldown">none</option>
