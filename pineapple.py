@@ -21,14 +21,16 @@ def lookup_ssid_information(ssid_list):
 
         for i in ssid_list:
             r = requests.get("https://api.wigle.net/api/v2/network/search?lastupdt={}&freenet=false&paynet=false&ssid={}".format(last_month.strftime("%Y%m%d"),i.rstrip()), auth=auth).json()
-            print(r)
             if("results" in r):
                 final_ssid_results.append(r["results"])
+            elif(r["message"] == "too many queries today"):
+                print(r) # if you're over the limit just dump the ssid to the console
 
-                # write the results to a file                                                         
-                f = open("./results/ssid_results_{}.json".format(current_time), "a")
-                f.write(json.dumps(final_ssid_results))
-                f.close()
+                
+            # write the results to a file                                                         
+            f = open("./results/ssid_results_{}.json".format(current_time), "a")
+            f.write(json.dumps(final_ssid_results))
+            f.close()
 
 # this cleans the ssids if getting the data from the pineapple api
 def clean_ssid_list_api(ssid_list):
